@@ -15,22 +15,36 @@ class App extends Component {
 
         this.setState({
 
-            newTask: value
-
+            newTask: value,
+            tasks:null
         })
 
     };
 
-componentDidMount(){   //pobranie danych z bazy
+    componentDidMount() {   //pobranie danych z bazy
 
-    fetch('https://jfddl4-sandbox.firebaseio.com/pawelp/tasks/.json')
+        fetch('https://jfddl4-sandbox.firebaseio.com/pawelp/tasks/.json')
 
-        .then(response => response.json())
+            .then(response => response.json())
 
-        .then(tasks => console.log(tasks))
+            .then(data => {
+                const dataInArray = ( //chcemy tablice z obiektami dlatego to przerabiamy.
+                    Object.entries(data)
+                        .map(el => ({
+
+                            key: el[0],
+                            value: el[1]
+                        }))
+                );
+
+                this.setState({
+
+                    tasks:dataInArray
 
 
-}
+                })
+            })
+    }
 
     saveToDb = (data) => fetch( //przesłanie danych do bazy
         'https://jfddl4-sandbox.firebaseio.com/pawelp/tasks/.json',
@@ -57,6 +71,24 @@ componentDidMount(){   //pobranie danych z bazy
                     onClick={() => this.saveToDb(this.state.newTask)}
 
                 />
+
+
+                {
+
+                    !this.state.tasks ?
+                        'Ładowanie.'
+                        :
+                        this.state.tasks.map(
+
+                            task =><div key={task.key}>{task.value}</div>  //w srodek jsxa js to klamerki
+                        )
+
+
+                }
+
+
+
+
 
             </div>
 
