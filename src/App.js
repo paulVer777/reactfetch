@@ -21,8 +21,18 @@ class App extends Component {
 
     };
 
+componentDidMount(){   //pobranie danych z bazy
 
-    saveToDb = (data) => fetch(
+    fetch('https://jfddl4-sandbox.firebaseio.com/pawelp/tasks/.json')
+
+        .then(response => response.json())
+
+        .then(tasks => console.log(tasks))
+
+
+}
+
+    saveToDb = (data) => fetch( //przesłanie danych do bazy
         'https://jfddl4-sandbox.firebaseio.com/pawelp/tasks/.json',
         {
             method: 'POST',
