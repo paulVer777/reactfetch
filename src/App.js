@@ -6,21 +6,20 @@ class App extends Component {
 
     state = {
 
-        newTask:""
+        newTask: ""
 
     };
 
 
-    newTaskHandler=(event,value)=>{
+    newTaskHandler = (event, value) => {
 
         this.setState({
 
-            newTask:value
+            newTask: value
 
         })
 
     };
-
 
 
     saveToDb = (data) => fetch(
@@ -38,16 +37,16 @@ class App extends Component {
 
             <div>
 
-               <TextField
+                <TextField
 
-               value={this.state.newTask}
-               onChange={this.newTaskHandler}
-               />
-              <RaisedButton
+                    value={this.state.newTask}
+                    onChange={this.newTaskHandler}
+                />
+                <RaisedButton
 
-              onClick={this.saveToDb(this.state.newTask)}
+                    onClick={() => this.saveToDb(this.state.newTask)}
 
-              />
+                />
 
             </div>
 
