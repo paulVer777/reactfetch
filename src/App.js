@@ -11,57 +11,47 @@ class App extends Component {
 
     };
 
-    inc=()=>(
+    inc = () => (
 
         this.setState({
 
-        counter:this.state.counter+1
+            counter: this.state.counter + 1
 
 
-        },this.saveToDb)
+        }, this.saveToDb)
 
     );
 
-    dec=()=>(
+    dec = () => (
 
         this.setState({
 
-            counter:this.state.counter-1
+            counter: this.state.counter - 1
 
 
-        },this.saveToDb)
+        }, this.saveToDb)
 
     );
 
-    componentDidMount(){
-
-
-
-
+    componentDidMount() {
 
 
         fetch('https://jfddl4-sandbox.firebaseio.com/pawelp/counter/.json')
 
-            .then(response=>response.json())
-            .then(data=>this.setState({
+            .then(response => response.json())
+            .then(data => this.setState({
 
-                counter:data
+                counter: data
 
 
             }))
 
 
-
     }
 
 
-
-
-
-
-
     saveToDb = () => fetch( //przesłanie danych do bazy
-        'https://jfddl4-sandbox.firebaseio.com/pawelp/counter/.json',
+        'https://jfddl4-sandbox.firebaseio.com/pawelp/.json',
         {
             method: 'PUT',
             body: JSON.stringify(this.state.counter) // zeby przeslac potrzebujemy zmienic ten obiekt na string
@@ -69,26 +59,29 @@ class App extends Component {
     );
 
 
-
-
     render() {
 
-        if(this.state.counter===null)
-        {
+        if (this.state.counter === null) {
             return <span>Loading</span>
 
         }
-
-
 
 
         return (
 
             <div>
 
+
+
                 <h1>{this.state.counter}</h1>
-                <button onClick={()=>{this.inc()}}>+</button>
-                <button onClick={()=>{this.dec()}}>-</button>
+                <button onClick={() => {
+                    this.inc()
+                }}>+
+                </button>
+                <button onClick={() => {
+                    this.dec()
+                }}>-
+                </button>
 
             </div>
 
