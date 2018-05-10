@@ -6,89 +6,89 @@ class App extends Component {
 
     state = {
 
-        newTask: ""
+
+        counter:null
 
     };
 
-
-    newTaskHandler = (event, value) => {
+    inc=()=>(
 
         this.setState({
 
-            newTask: value,
-            tasks:null
-        })
-
-    };
-
-    componentDidMount() {   //pobranie danych z bazy
-
-        fetch('https://jfddl4-sandbox.firebaseio.com/pawelp/tasks/.json')
-
-            .then(response => response.json())
-
-            .then(data => {
-                const dataInArray = ( //chcemy tablice z obiektami dlatego to przerabiamy.
-                    Object.entries(data)
-                        .map(el => ({
-
-                            key: el[0],
-                            value: el[1]
-                        }))
-                );
-
-                this.setState({
-
-                    tasks:dataInArray
+        counter:this.state.counter+1
 
 
-                })
-            })
+        },this.saveToDb)
+
+    );
+
+    dec=()=>(
+
+        this.setState({
+
+            counter:this.state.counter-1
+
+
+        },this.saveToDb)
+
+    );
+
+    componentDidMount(){
+
+
+
+
+
+
+        fetch('https://jfddl4-sandbox.firebaseio.com/pawelp/counter/.json')
+
+            .then(response=>response.json())
+            .then(data=>this.setState({
+
+                counter:data
+
+
+            }))
+
+
+
     }
 
-    saveToDb = (data) => fetch( //przesłanie danych do bazy
-        'https://jfddl4-sandbox.firebaseio.com/pawelp/tasks/.json',
+
+
+
+
+
+
+    saveToDb = () => fetch( //przesłanie danych do bazy
+        'https://jfddl4-sandbox.firebaseio.com/pawelp/counter/.json',
         {
-            method: 'POST',
-            body: JSON.stringify(data) // zeby przeslac potrzebujemy zmienic ten obiekt na string
+            method: 'PUT',
+            body: JSON.stringify(this.state.counter) // zeby przeslac potrzebujemy zmienic ten obiekt na string
         }
     );
 
+
+
+
     render() {
+
+        if(this.state.counter===null)
+        {
+            return <span>Loading</span>
+
+        }
+
+
 
 
         return (
 
             <div>
 
-                <TextField
-
-                    value={this.state.newTask}
-                    onChange={this.newTaskHandler}
-                />
-                <RaisedButton
-
-                    onClick={() => this.saveToDb(this.state.newTask)}
-
-                />
-
-
-                {
-
-                    !this.state.tasks ?
-                        'Ładowanie.'
-                        :
-                        this.state.tasks.map(
-
-                            task =><div key={task.key}>{task.value}</div>  //w srodek jsxa js to klamerki
-                        )
-
-
-                }
-
-
-
-
+                <h1>{this.state.counter}</h1>
+                <button onClick={()=>{this.inc()}}>+</button>
+                <button onClick={()=>{this.dec()}}>-</button>
 
             </div>
 
