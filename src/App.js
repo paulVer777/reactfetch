@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import Counter from './Components/Counter'
-
+import Chat from './Components/Chat'
 
 class App extends Component {
 
@@ -17,6 +17,7 @@ class App extends Component {
             <div>
 
                 <Counter/>
+                <Chat/>
 
             </div>
 
