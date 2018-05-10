@@ -8,7 +8,7 @@ class Counter extends React.Component {
 
         counter: 0
 
-    }
+    };
 
     inc = () => (
 
