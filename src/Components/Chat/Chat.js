@@ -2,7 +2,7 @@ import React from 'react'
 
 import TextField from 'material-ui/TextField'
 import RaisedButton from 'material-ui/RaisedButton'
-import {database} from "../../firebase"; // importujemy biblioteke firebase
+import {auth,database} from "../../firebase"; // importujemy biblioteke firebase
 import {mapObjectToArray, utils} from '../../utils'
 
 import ChatAppBar from "./ChatAppBar";

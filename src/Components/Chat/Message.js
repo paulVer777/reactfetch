@@ -1,12 +1,30 @@
 import React from 'react'
-import moment from "moment/moment";
-import MenuItem from 'material-ui/MenuItem';
+import moment from 'moment'
+import Avatar from 'material-ui/Avatar';
+import { ListItem } from 'material-ui/List';
+import { darkBlack } from 'material-ui/styles/colors'
+import ChatIcon from 'material-ui/svg-icons/communication/chat'
 
-const Message = ({message}) => (
-
-        <MenuItem
-            primaryText={`${message.user}:(${(moment(message.timestamp).format('h:mm:ss'))})${message.message}`}
+const Message = ({ message }) => (
+    <div>
+        <ListItem
+            leftAvatar={
+                <Avatar
+                    src={message.avatar}
+                    icon={<ChatIcon />}
+                />
+            }
+            primaryText={message.user || message.email}
+            secondaryText={
+                <p>
+                    <span style={{ color: darkBlack }}>
+                        {moment(message.timestamp).format('DD/MM/YY HH:mm')}
+                    </span> --
+                    {message.message}
+                </p>
+            }
         />
+    </div>
 )
 
 export default Message
