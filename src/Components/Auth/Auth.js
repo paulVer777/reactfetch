@@ -1,6 +1,6 @@
 import React from 'react'
 import {auth} from "../../firebase";
-
+import LoginForms from './LoginForms'
 
 class Auth extends React.Component {
 
@@ -43,7 +43,7 @@ class Auth extends React.Component {
                     this.state.isLoggedIn ? //jesli zalogowany wyswietl dzieci(chat), jesli nie to wyswietl zaloguj sie
                         this.props.children
                         :
-                        'Zaloguj się!'
+                        <LoginForms/>
 
                 }
             </div>
