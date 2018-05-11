@@ -2,15 +2,11 @@ import React from 'react'
 
 import TextField from 'material-ui/TextField'
 import RaisedButton from 'material-ui/RaisedButton'
-import {auth,database} from "../firebase"; // importujemy biblioteke firebase
-import {mapObjectToArray, utils} from '../utils'
-import MenuItem from 'material-ui/MenuItem';
-import Moment from 'moment'
+import {database} from "../../firebase"; // importujemy biblioteke firebase
+import {mapObjectToArray, utils} from '../../utils'
+
 import ChatAppBar from "./ChatAppBar";
-
-
-
-
+import Message from './Message'
 
 
 class Chat extends React.Component {
@@ -37,12 +33,10 @@ class Chat extends React.Component {
                     this.setState({
 
                         messages: mapObjectToArray(snapshot.val()).reverse(), //konwertuje na tablice z obiektami
-
                     })
                 }
             )
     }
-
     addMessage = () => database.ref('/chat').push({
 
         message: this.state.newMessage,
@@ -54,7 +48,6 @@ class Chat extends React.Component {
     render() {
         return (
             <div>
-
 
                <ChatAppBar/>
 
@@ -73,18 +66,16 @@ class Chat extends React.Component {
                 {/*<h1>{this.state.messages}</h1>*/}
 
 
-                <div>
+                {
+                    this.state.messages.map((value, key) => (
+                        <Message
+                            message={value}
+                        />
+                    ))
+                }
 
-                    {
-                        this.state.messages.map((value, key) => (
-                            <MenuItem
 
-                                primaryText={`${value.user}:(${(Moment(value.timestamp).format('h:mm:ss'))})${value.message}`}
 
-                            />
-                        ))
-                    }
-                </div>
             </div>
         )
     }
