@@ -2,10 +2,16 @@ import React from 'react'
 
 import TextField from 'material-ui/TextField'
 import RaisedButton from 'material-ui/RaisedButton'
-import {database} from "../firebase"; // importujemy biblioteke firebase
+import {auth,database} from "../firebase"; // importujemy biblioteke firebase
 import {mapObjectToArray, utils} from '../utils'
 import MenuItem from 'material-ui/MenuItem';
 import Moment from 'moment'
+import AppBar from 'material-ui/AppBar';
+import IconButton from 'material-ui/IconButton';
+import NavigationClose from 'material-ui/svg-icons/navigation/close';
+
+
+
 
 
 class Chat extends React.Component {
@@ -49,6 +55,25 @@ class Chat extends React.Component {
     render() {
         return (
             <div>
+
+
+               <AppBar
+
+               showMenuIconButton={false}
+               iconElementRight={
+
+                   <IconButton
+
+                   onClick={()=>auth.signOut()}>
+
+                   <NavigationClose/>
+
+                   </IconButton>
+
+               }
+
+               />
+
                 <TextField
                     fullWidth={true}
                     value={this.state.newMessage}
