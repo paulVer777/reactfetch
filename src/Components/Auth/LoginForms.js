@@ -20,3 +20,6 @@ class LoginForms extends React.Component{
         )
     }
 }
+
+
+export default LoginForms
