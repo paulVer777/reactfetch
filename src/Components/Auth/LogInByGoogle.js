@@ -1,11 +1,12 @@
 import React from 'react'
 import RaisedButton from 'material-ui/RaisedButton'
+import PaperRefined from "../PaperRefined";
 
 
 const LoginByGoogle = (props) => (
 
 
-    <div>
+    <PaperRefined>
 
         <RaisedButton
 
@@ -16,8 +17,8 @@ const LoginByGoogle = (props) => (
 
         />
 
+    </PaperRefined>
 
-    </div>
 
 )
 

@@ -8,6 +8,8 @@ import ChatIcon from 'material-ui/svg-icons/communication/chat'
 const Message = ({ message }) => (
     <div>
         <ListItem
+
+
             leftAvatar={
                 <Avatar
                     src={message.avatar}
@@ -23,6 +25,8 @@ const Message = ({ message }) => (
                     {message.message}
                 </p>
             }
+
+
         />
     </div>
 )
