@@ -12,7 +12,7 @@ import Message from './Message'
 class Chat extends React.Component {
 
     state = {
-        name: 'Pablo',
+
         newMessage: '',
         messages: []
     };
@@ -40,7 +40,9 @@ class Chat extends React.Component {
     addMessage = () => database.ref('/chat').push({
 
         message: this.state.newMessage,
-        user: this.state.name,
+        user: auth.currentUser.displayName,
+        email:auth.currentUser.email,
+        avatar:auth.currentUser.photoURL,
         timestamp: Date.now()
     }
     ).then(()=>this.setState({newMessage:""}));
@@ -67,8 +69,9 @@ class Chat extends React.Component {
 
 
                 {
-                    this.state.messages.map((value, key) => (
+                    this.state.messages.map((value, index) => (
                         <Message
+                            key={value.key}
                             message={value}
                         />
                     ))
