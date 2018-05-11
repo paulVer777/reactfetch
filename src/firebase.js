@@ -11,4 +11,5 @@ const config = {
 
 firebase.initializeApp(config)
 
+export const auth = firebase.auth() //exportujemy obiekt ktory bedzie pozwalal na autoryzacje.
 export const database = firebase.database()
