@@ -16,6 +16,8 @@ const PaperRefined=(props)=>(
 
     <Paper style={styles}>
 {props.children}
+
+
     </Paper>
 
 );

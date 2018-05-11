@@ -1,12 +1,14 @@
 import React from 'react'
 import LoginByGoogle from "./LogInByGoogle";
-import {auth,googleProvider} from "../../firebase";
+import {auth, googleProvider} from "../../firebase";
+import LoginByEmailAndPassword from "../LoginByEmailAndPassword";
 
 
+class LoginForms extends React.Component {
 
-class LoginForms extends React.Component{
-
-    LoginByGoogle=()=>{auth.signInWithPopup(googleProvider)} //wyswietli okno logowania do google
+    LoginByGoogle = () => {
+        auth.signInWithPopup(googleProvider)
+    } //wyswietli okno logowania do google
 
 
     render() {
@@ -15,24 +17,33 @@ class LoginForms extends React.Component{
         return (
 
 
-
             <div>
 
-                <LoginByGoogle
 
-                onLogInClick={this.LoginByGoogle}
+                <LoginByEmailAndPassword
+
+                    emailValue={''}
+                    onEmailChange={() => {
+                    }}
+                    passwordValue={''}
+                    onPasswordChange={() => {
+                    }}
+                    onLogInClick={() => {
+                    }}
 
                 />
 
+                <LoginByGoogle
+                    onLogInClick={this.LoginByGoogle}
+                />
 
+                <LoginByGoogle
 
+                    onLogInClick={this.LoginByGoogle}
 
+                />
 
             </div>
-
-
-
-
 
         )
     }
