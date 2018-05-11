@@ -3,6 +3,8 @@ import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import Counter from './Components/Counter'
 import Chat from './Components/Chat'
+import Auth from './Components/Auth'
+
 
 class App extends Component {
 
@@ -14,12 +16,12 @@ class App extends Component {
 
         return (
 
-            <div>
+            <Auth>
 
 
                 <Chat/>
 
-            </div>
+            </Auth>
 
         )
     }
