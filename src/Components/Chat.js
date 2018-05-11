@@ -6,9 +6,8 @@ import {auth,database} from "../firebase"; // importujemy biblioteke firebase
 import {mapObjectToArray, utils} from '../utils'
 import MenuItem from 'material-ui/MenuItem';
 import Moment from 'moment'
-import AppBar from 'material-ui/AppBar';
-import IconButton from 'material-ui/IconButton';
-import NavigationClose from 'material-ui/svg-icons/navigation/close';
+import ChatAppBar from "./ChatAppBar";
+
 
 
 
@@ -57,22 +56,7 @@ class Chat extends React.Component {
             <div>
 
 
-               <AppBar
-
-               showMenuIconButton={false}
-               iconElementRight={
-
-                   <IconButton
-
-                   onClick={()=>auth.signOut()}>
-
-                   <NavigationClose/>
-
-                   </IconButton>
-
-               }
-
-               />
+               <ChatAppBar/>
 
                 <TextField
                     fullWidth={true}
